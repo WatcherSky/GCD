@@ -49,6 +49,7 @@ class SecondViewController: UIViewController {
         
         fetchImage()
         
+        delay(delay: 3, closure: {
         let ac = UIAlertController(title: "Registered?", message: "Enter your login and password", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -65,8 +66,13 @@ class SecondViewController: UIViewController {
         }
         self.present(ac, animated: true, completion: nil)
         
+    })
         }
-        
-
-    }
+        func delay(delay: Double, closure: @escaping ()->()) {
+            let when = DispatchTime.now() + delay
+               DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+        }
+    
+    
+}
 
